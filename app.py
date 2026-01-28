@@ -4,6 +4,8 @@ restaurantes = [{"nome": "Casa da vó", "categoria": "Mineira", "ativo": True},
                 {"nome": "Brasa Leve", "categoria": "Americano", "ativo": False}]
 
 def exibir_menu():
+    """Essa função é responsável por exibir o menu inicial com as opções possiveis    """
+
     print("""   ___           _    _        ___               _   __  
   / __|___ _ __ (_)__| |__ _  | _ \\_ _ __ _   _ | |_/_/  
  | (__/ _ \\ '  \\| / _` / _` | |  _/ '_/ _` | | || / _` | 
@@ -15,10 +17,14 @@ def exibir_menu():
     print("4. Sair do Cadastro")
 
 def opcao_invalida():
+    """Essa função é responsável por trazer a mensagem de opção inválida e possibilitar o usuário à voltar para ao menu inicial"""
+
     print("\nOpção inválida")
     voltar_ao_menu()
 
 def listar_restaurante():
+    """Essa função é responsável por listar todos os restaurantes cadastrados"""
+
     exibir_subtitulo("Listando restaurantes")
 
     print(f"  {"Nome do Restaurante".center(20)} | {"Categoria".center(20)} | {"Status".center(20)}|")
@@ -32,9 +38,13 @@ def listar_restaurante():
     voltar_ao_menu()
     
 def voltar_ao_menu():
+    """Essa função é responsável por voltar ao menu inicial, congelando a tela até o usuário clicar em alguma tecla"""
+
     input("\nAperte alguma tecla pra voltar pro menu inicial ")
 
 def exibir_subtitulo(text):
+    """Essa função é responsável por exibir o subtitulo de uma forma padronizada, limpando o terminal e ajustanto o texto"""
+
     asteristicos = '*' * len(text)
     os.system('cls')
     print(asteristicos)
@@ -42,6 +52,8 @@ def exibir_subtitulo(text):
     print(asteristicos, "\n")
 
 def cadastrar_restaurante():
+    """Essa função é responsável por cadastrar novos restaurantes"""
+
     exibir_subtitulo("Cadastros de Restaurantes")
     nome_restaurante = input("Digite o nome do restaurante: ")
 
@@ -60,6 +72,8 @@ def cadastrar_restaurante():
     voltar_ao_menu()
 
 def ativar_desativar_restaurante():
+    """Essa função é responsável por ativar ou desativar restaurates, tendo a ciência de que todo novo restaurante nasce desativado"""
+
     exibir_subtitulo("Ativando ou Desativando Restaurante")
     nome_restaurante = input("Digite o nome do restaurante que deseja ativar ou desativar: ")
     restaurante_encontrado = False
@@ -77,6 +91,8 @@ def ativar_desativar_restaurante():
     voltar_ao_menu()    
         
 def escolher_opcao():
+    """Essa função é responsável por direcionar o usuário para a opção escolhida, e ajuda-lo caso ele insira uma opção inválida"""
+
     try:
         opcao_escolhida = int(input("Escolha uma opção: "))
         if opcao_escolhida == 1:
@@ -101,10 +117,14 @@ def escolher_opcao():
     return True
 
 def finalizar_app():
+    """Essa função é responsável por fechar o app"""
+
     exibir_subtitulo("Finalizando o app")
     return False
 
 def main():
+    """Essa função é responsável por ser o main do projeto"""
+
     # crio uma váriavel local no main para iniciar o loop, que só será quebrado quando escolher_opcao() retornar False
     ativo = True
     while ativo:
