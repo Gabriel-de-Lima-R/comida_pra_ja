@@ -1,3 +1,5 @@
+from models.avaliacao import Avaliacao
+
 class Restaurante:
     restaurantes = []
 
@@ -7,6 +9,7 @@ class Restaurante:
         self._nome = nome.title()
         self._categoria = categoria.title()
         self._ativo = False #ao colocar _ antes do nome da propriedade, declaramos pro sistema que ela é protegida e em tese, não se deve mexer
+        self._avaliacao = []
         Restaurante.restaurantes.append(self)
     
     #caso necessite devolver como string
@@ -15,10 +18,10 @@ class Restaurante:
 
     @classmethod
     def listar_restaurante(cls): #cls refere-se a classe
-        print(f"{"Nome do Restaurante".center(20)} | {"Categoria".center(20)} | {"Status".center(20)}")
-        print("-" * 66)
+        print(f"{"Nome do Restaurante".center(20)} | {"Categoria".center(20)} | {"Avaliação".center(20)} | {"Status".center(20)}")
+        print("-" * 89)
         for restaurante in cls.restaurantes:
-            print(f"{restaurante._nome.center(20)} | {restaurante._categoria.center(20)} | {restaurante.ativo.center(20)}")
+            print(f"{restaurante._nome.center(20)} | {restaurante._categoria.center(20)} | {str(restaurante.media_avaliacao).center(20)} | {restaurante.ativo.center(20)}")
 
     @property
     def ativo(self):
@@ -27,12 +30,18 @@ class Restaurante:
     def alternar_estado(self):
         self._ativo = not self._ativo
 
+    def receber_avaliacao(self, cliente, nota):
+        if 0 < nota <= 5:
+            nova_avaliacao = Avaliacao(cliente, nota)
+            self._avaliacao.append(nova_avaliacao)
 
-
-pizzaria = Restaurante("Pizzaria", "Italiana")
-hamburgueria = Restaurante("Hamburgueria", "Americano")
-
-pizzaria.alternar_estado()
-
-Restaurante.listar_restaurante()
+    @property
+    def media_avaliacao(self):
+        if not self._avaliacao:
+            return "-"
+        
+        somas_notas = sum(avaliacao._nota for avaliacao in self._avaliacao)
+        quantidade_notas = len(self._avaliacao)
+        media = round(somas_notas / quantidade_notas, 1)
+        return media
 
