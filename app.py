@@ -10,10 +10,14 @@ pizzaria.receber_avaliacao("Lucas", 5)
 
 skol = Bebida("Cerveja", 5.0, "grande")
 pao = Prato("Pão", 3.99, "melhor pão da cidade")
+pizzaria.adicionar_no_cardapio(skol)
+pizzaria.adicionar_no_cardapio(pao)
+
+skol.aplicar_desconto()
+pao.aplicar_desconto()
 
 def main():
-    print(skol)
-    print(pao)
+    pizzaria.mostre_cardapio
 
 
 if __name__ == "__main__":
