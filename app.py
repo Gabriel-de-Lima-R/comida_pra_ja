@@ -1,18 +1,20 @@
 from models.restaurante import Restaurante
+from models.cardapio.bebida import Bebida
+from models.cardapio.prato import Prato
 
 pizzaria = Restaurante("pizzaria", "Italiana")
-hamburgueria = Restaurante("Hamburgueria", "Americano")
-taco_land = Restaurante("Taco Land", "Mexicano")
-sujinho = Restaurante("Sujinho", "Japonês")
-
 pizzaria.receber_avaliacao("Lucas", 3)
 pizzaria.receber_avaliacao("Lucas", 1.5)
 pizzaria.receber_avaliacao("Lucas", 5)
-hamburgueria.receber_avaliacao("Jonas", 2)
+
+
+skol = Bebida("Cerveja", 5.0, "grande")
+pao = Prato("Pão", 3.99, "melhor pão da cidade")
 
 def main():
-    pizzaria.alternar_estado()
-    Restaurante.listar_restaurante()
+    print(skol)
+    print(pao)
+
 
 if __name__ == "__main__":
     main()
